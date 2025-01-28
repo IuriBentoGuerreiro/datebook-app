@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div class="home-container">
+  <div class="welcome-section">
+    <h1>Bem-vindo à Nossa Aplicação!</h1>
+    <p>Gerencie seus compromissos, organize suas tarefas e muito mais!</p>
+    <button mat-raised-button color="accent" routerLink="/appointment">
+      Começar Agora
+    </button>
+  </div>
+
+  <div class="features-section">
+    <h2>Funcionalidades</h2>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <mat-icon class="feature-icon">{{ feature.icon }}</mat-icon>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Compromisso</h2>
+
+<mat-dialog-content>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Descrição</mat-label>
+      <input matInput [(ngModel)]="appointmentData.description" name="description" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prazo</mat-label>
+      <input matInput [matDatepicker]="endPicker" [(ngModel)]="appointmentData.endDate" name="endDate" required>
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-slide-toggle [(ngModel)]="appointmentData.status" name="status">Status</mat-slide-toggle>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-button color="primary" (click)="save()">Salvar</button>
+</mat-dialog-actions>

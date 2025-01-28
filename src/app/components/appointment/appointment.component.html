@@ -1,0 +1,69 @@
+<app-header></app-header>
+<button class="add-btn" (click)="openAppointmentDialog(appointmentData)">
+  <mat-icon>add</mat-icon>
+</button>
+
+<div class="container">
+  <h1 class="title">Todos os Compromissos</h1>
+  
+  <div class="form-container" *ngIf="isFormVisible">
+    <h2 class="form-title">Novo Compromisso</h2>
+    <!-- Adicione o conteúdo do formulário aqui, se necessário -->
+  </div>
+
+  <!-- Tabela de Compromissos -->
+  <table class="appointment-table">
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Data Início</th>
+        <th>Data Fim</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appt of appointments.content">
+        <td>{{ appt.description }}</td>
+        <td>{{ appt.startDate | date }}</td>
+        <td>{{ appt.endDate | date }}</td>
+        <td>
+          <span [ngClass]="appt.status ? 'status-completed' : 'status-pending'">
+            {{ appt.status ? 'Completo' : 'Pendente' }}
+          </span>
+        </td>
+        <td>
+          <button class="delete-btn" (click)="deleteAppointment(appt.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <button class="update-btn" (click)="openAppointmentDialog(appt)">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button class="status-btn" (click)="markAsCompleted(appt.id)">
+            <mat-icon>check</mat-icon>
+          </button>  
+        </td>
+      </tr>
+    </tbody>
+  </table>  
+
+  <!-- Controles de Paginação -->
+  <div class="pagination-controls">
+    <button
+      class="pagination-btn"
+      [disabled]="currentPage === 0"
+      (click)="changePage(currentPage - 1)">
+      <span class="material-icons">keyboard_arrow_left</span> <!-- Seta para a esquerda -->
+    </button>
+    <span class="page-indicator">Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+    <button
+      class="pagination-btn"
+      [disabled]="currentPage + 1 >= totalPages"
+      (click)="changePage(currentPage + 1)">
+      <span class="material-icons">keyboard_arrow_right</span> <!-- Seta para a direita -->
+    </button>
+  </div>
+</div>
+

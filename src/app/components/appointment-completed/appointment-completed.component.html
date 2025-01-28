@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1 class="title">Compromissos Completos</h1>
+
+  <!-- Tabela de compromissos completos -->
+  <table class="appointment-table">
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Data Início</th>
+        <th>Data Fim</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appt of completedAppointments">
+        <td>{{ appt.description }}</td>
+        <td>{{ appt.startDate | date }}</td>
+        <td>{{ appt.endDate | date }}</td>
+        <td>
+          <span class="status-completed">Completo</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-controls">
+    <button
+      class="pagination-btn"
+      [disabled]="currentPage === 0"
+      (click)="changePage(currentPage - 1)">
+      <span class="material-icons">keyboard_arrow_left</span> <!-- Seta para a esquerda -->
+    </button>
+    <span class="page-indicator">Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+    <button
+      class="pagination-btn"
+      [disabled]="currentPage + 1 >= totalPages"
+      (click)="changePage(currentPage + 1)">
+      <span class="material-icons">keyboard_arrow_right</span> <!-- Seta para a direita -->
+    </button>
+  </div> 
+</div>

@@ -1,0 +1,97 @@
+/* appointment-form.component.scss */
+
+/* Corpo do diálogo */
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+/* Título do diálogo */
+mat-dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #3f51b5; /* Cor do título */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Formulário e campos de entrada */
+mat-form-field {
+  margin-top: 5px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Estilo do campo de input */
+input.mat-input-element {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+/* Estilo do slide toggle */
+mat-slide-toggle {
+  margin-top: 10px;
+  color: #3f51b5;
+}
+
+/* Ações de botão */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding: 10px;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+/* Botões */
+button.mat-button {
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+
+/* Hover nos botões */
+button.mat-button:hover {
+  opacity: 0.8;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  mat-dialog-content {
+    padding: 15px;
+  }
+
+  mat-form-field {
+    margin-bottom: 15px;
+  }
+
+  mat-dialog-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button.mat-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  mat-dialog-title {
+    font-size: 20px;
+  }
+
+  button.mat-button {
+    padding: 12px;
+  }
+}

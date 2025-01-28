@@ -1,0 +1,106 @@
+/* Header */
+.header {
+  width: 100%;
+  background-color: #6200ea;
+  color: white;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 60px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out; /* Suaviza transições para mudanças no layout */
+}
+
+/* Ícone do Header */
+.icon {
+  color: white;
+  font-size: 1.5rem; /* Tamanho do ícone ajustável */
+  cursor: pointer;
+}
+
+/* Navegação */
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav a {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav a:hover {
+  background-color: #3700b3;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .header {
+    padding: 0.6rem 1.5rem;
+  }
+
+  .nav a {
+    font-size: 0.9rem; /* Texto levemente menor em telas médias */
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row; /* Itens permanecem em linha */
+    justify-content: space-between; /* Espaçamento entre logo e navegação */
+    padding: 0.5rem 1rem; /* Reduz o padding */
+    height: 60px; /* Altura consistente */
+  }
+
+  .nav {
+    flex-direction: row; /* Itens em linha */
+    gap: 0.5rem; /* Menor espaçamento entre itens do menu */
+    align-items: center; /* Centraliza os itens verticalmente */
+  }
+
+  .nav a {
+    font-size: 0.9rem; /* Texto ligeiramente menor */
+    padding: 0.4rem 0.6rem; /* Reduz padding nos links */
+    border-radius: 4px; /* Ajusta bordas arredondadas */
+  }
+
+  .nav a:hover {
+    background-color: #3700b3; /* Destaque no hover */
+    color: white; /* Contraste no texto */
+  }
+
+  .icon {
+    font-size: 1.5rem; /* Ícone menor para se ajustar ao layout */
+  }
+
+  .header > * {
+    margin: 0; /* Remove margens extras */
+  }
+}
+
+
+/* Responsividade para dispositivos muito pequenos */
+@media (max-width: 480px) {
+  .header {
+    padding: 0.5rem 1rem;
+  }
+
+  .nav a {
+    font-size: 0.8rem; /* Texto reduzido para se ajustar a telas pequenas */
+  }
+
+  .form-logo {
+    width: 60px; /* Redução do tamanho da logo */
+  }
+}

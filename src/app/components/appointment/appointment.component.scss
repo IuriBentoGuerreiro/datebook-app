@@ -1,0 +1,306 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+/* Título */
+.title {
+  text-align: center;
+  color: #4A4A4A;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* Botão Adicionar Compromisso */
+.add-btn {
+  position: fixed;
+  top: 70px;
+  right: 30px;
+  width: 65px;
+  padding: 12px 20px;
+  background-color: #6200ea;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.add-btn:hover {
+  background-color: #3700b3;
+}
+
+/* Formulário */
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-title {
+  color: #6200ea;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6200ea;
+}
+
+.submit-btn {
+  width: 100%;
+  max-width: 300px;
+  padding: 14px;
+  background-color: #6200ea;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.submit-btn:hover {
+  background-color: #3700b3;
+}
+
+/* Tabela */
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.appointment-table th,
+.appointment-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.appointment-table th {
+  background-color: #6200ea;
+  color: white;
+  font-size: 1rem;
+}
+
+.appointment-table td {
+  background-color: #f9f9f9;
+}
+
+.appointment-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.delete-btn {
+  background-color: #ff0000;
+  color: white;
+  padding: 8px 12px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #960000;
+}
+
+.update-btn {
+  background-color: #ff5e00;
+  color: white;
+  padding: 8px 12px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn:hover {
+  background-color: #db4500;
+}
+
+.status-btn {
+  background-color: #1eff00;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.status-btn:hover {
+  background-color: #208a00;
+}
+
+.status-completed {
+  color: green;
+  font-weight: bold;
+}
+
+.status-pending {
+  color: red;
+  font-weight: bold;
+}
+
+/* Ajuste nos botões de paginação */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  /* Botões */
+  .add-btn,
+  .submit-btn {
+    font-size: 0.8rem; /* Diminui ainda mais o tamanho da fonte */
+    padding: 8px 12px;  /* Diminui o padding */
+    width: 45px;        /* Ajusta a largura para caber melhor */
+  }
+
+  .form-title {
+    font-size: 1.2rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .appointment-table th,
+  .appointment-table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .delete-btn,
+  .update-btn,
+  .status-btn {
+    padding: 5px 8px;
+    font-size: 0.7rem; /* Reduz o tamanho da fonte */
+  }
+
+  /* Ajustando o botão fixo para não cobrir o conteúdo em telas pequenas */
+  .add-btn {
+    right: 10px;
+    top: 50px;
+    width: 40px;  /* Menor ainda */
+    padding: 6px 10px;  /* Menos padding */
+  }
+
+  .appointment-table {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .add-btn,
+  .submit-btn {
+    font-size: 0.7rem;  /* Tamanho bem reduzido */
+    padding: 6px 10px;   /* Reduzindo ainda mais o padding */
+  }
+
+  input {
+    font-size: 0.7rem;  /* Ajuste de fonte para telas pequenas */
+    padding: 6px;
+  }
+
+  .appointment-table th,
+  .appointment-table td {
+    padding: 8px;
+    font-size: 0.7rem; /* Ajuste de fonte e padding */
+  }
+
+  .delete-btn,
+  .update-btn,
+  .status-btn {
+    padding: 4px 6px;
+    font-size: 0.6rem;  /* Fonte bem menor */
+  }
+
+  .add-btn {
+    width: 35px;  /* Botão ainda menor */
+    padding: 5px 8px;  /* Ajuste de padding */
+  }
+
+  /* Botões de paginação em telas muito pequenas */
+  .pagination-btn {
+    font-size: 12px; /* Fonte menor */
+    width: 35px;
+    height: 35px;
+    padding: 6px;
+  }
+
+  .pagination-btn:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+  }
+
+  .pagination-btn:hover {
+    background-color: #ddd;
+  }
+
+  .page-indicator {
+    font-size: 12px;
+  }
+}
