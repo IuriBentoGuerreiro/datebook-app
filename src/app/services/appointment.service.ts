@@ -14,7 +14,7 @@ export class AppointmentService {
   constructor(private http: HttpClient) {}
 
   createAppointment(appointmentRequest: AppointmentRequest): Observable<AppointmentResponse> {
-    return this.http.post<AppointmentResponse>(this.baseUrl, appointmentRequest);
+    return this.http.post<AppointmentResponse>(`${this.baseUrl}/appointments`, appointmentRequest);
   }
 
   // Método para obter um compromisso por ID
@@ -26,38 +26,35 @@ export class AppointmentService {
     const httpParams = new HttpParams()
       .set('page', params.page.toString())
       .set('size', params.size.toString());
-
-    return this.http.get<Pageable<AppointmentResponse>>(this.baseUrl, { params: httpParams });
-  }
-  updateAppointment(id: number, appointmentRequest: AppointmentRequest): Observable<AppointmentResponse> {
-    return this.http.put<AppointmentResponse>(`${this.baseUrl}/${id}`, appointmentRequest);
+  
+    return this.http.get<Pageable<AppointmentResponse>>(`${this.baseUrl}/appointments`, { params: httpParams });
   }
   
-  // Método para deletar um compromisso
+  updateAppointment(id: number, appointmentRequest: AppointmentRequest): Observable<AppointmentResponse> {
+    return this.http.put<AppointmentResponse>(`${this.baseUrl}/appointments/${id}`, appointmentRequest);
+  }
+  
   deleteAppointment(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/appointments/${id}`);
   }
 
-  // Método para buscar compromissos concluídos com paginação
   listCompleted(page: number, size: number): Observable<Pageable<AppointmentResponse>> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
-
-    return this.http.get<Pageable<AppointmentResponse>>(`${this.baseUrl}/completed`, { params });
+  
+    return this.http.get<Pageable<AppointmentResponse>>(`${this.baseUrl}/appointments/completed`, { params });
   }
-
-  // Método para listar compromissos pendentes com paginação
+  
   listPending(pageable: Pageable<AppointmentResponse>): Observable<Pageable<AppointmentResponse>> {
     const params = {
       page: pageable.page.toString(),
       size: pageable.size.toString()
     };
-    return this.http.get<Pageable<AppointmentResponse>>(`${this.baseUrl}/pending`, { params });
+    return this.http.get<Pageable<AppointmentResponse>>(`${this.baseUrl}/appointments/pending`, { params });
   }
-
-  // Método para marcar um compromisso como completado
+  
   MarkAsCompleted(id: number): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/${id}/completed`, null);
-  }
+    return this.http.put<any>(`${this.baseUrl}/appointments/${id}/completed`, null);
+  }  
 }
