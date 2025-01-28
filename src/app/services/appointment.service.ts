@@ -9,7 +9,7 @@ import { Pageable } from '../model/Pageable';  // Para tipar os parâmetros de p
   providedIn: 'root'
 })
 export class AppointmentService {
-  private baseUrl = 'http://localhost:8080/appointments'; // URL do back-end
+  private baseUrl = 'https://datebook-api.onrender.com'; // URL do back-end
 
   constructor(private http: HttpClient) {}
 
