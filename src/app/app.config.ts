@@ -9,10 +9,16 @@ import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(HttpClientModule, FormsModule, MatDatepickerModule, MatNativeDateModule),
+    importProvidersFrom(
+      HttpClientModule,
+       FormsModule,
+        MatDatepickerModule,
+         MatNativeDateModule,
+          MatPaginatorModule),
     provideRouter(routes),
     provideAnimationsAsync(),
     {

@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppointmentResponse } from '../../model/AppointmentResponse';
 import { AppointmentService } from '../../services/appointment.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
+import { PageEvent } from '@angular/material/paginator';
+import { PaginationComponent } from '../paginator/paginator.component';
+import { Pageable } from '../../model/Pageable';
 
 @Component({
   selector: 'app-appointment-completed',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, PaginationComponent],
   templateUrl: './appointment-completed.component.html',
-  styleUrls: ['./appointment-completed.component.scss'] // Corrigido o nome do atributo para 'styleUrls'
+  styleUrls: ['./appointment-completed.component.scss']
 })
-export class AppointmentCompletedComponent {
+export class AppointmentCompletedComponent implements OnInit {
   currentPage: number = 0; // Página inicial
   pageSize: number = 5; // Tamanho da página
-  completedAppointments: AppointmentResponse[] = []; // Compromissos concluídos
+  completedAppointments: AppointmentResponse[] = []; // Lista de compromissos concluídos
   totalPages: number = 0; // Total de páginas
-  totalElements: number = 0; // Total de compromissos
+  totalElements: number = 0; // Total de elementos
 
   constructor(private appointmentService: AppointmentService) {}
 
@@ -24,26 +27,21 @@ export class AppointmentCompletedComponent {
     this.loadAppointmentsCompleted();
   }
 
-  // Carrega os compromissos concluídos
-  loadAppointmentsCompleted(): void {
-    this.appointmentService.listCompleted(this.currentPage, this.pageSize).subscribe(
-      (response) => {
-        // Atualiza os compromissos concluídos e os dados de paginação
-        this.completedAppointments = response.content;
-        this.totalElements = response.totalElements;
-        this.totalPages = Math.ceil(this.totalElements / this.pageSize); // Calcula o total de páginas
-      },
-      (error) => {
-        console.error('Erro ao carregar compromissos concluídos:', error);
-      }
-    );
+  // Disparado quando o usuário muda a página no paginator
+  onPageChange(event: PageEvent): void {
+    console.log('Página mudou:', event);
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadAppointmentsCompleted();
   }
 
-  // Altera a página atual e recarrega os compromissos
-  changePage(page: number): void {
-    if (page >= 0 && page < this.totalPages) { // Verifica se a página está dentro dos limites
-      this.currentPage = page;
-      this.loadAppointmentsCompleted();
-    }
+  // Carrega os compromissos concluídos
+  loadAppointmentsCompleted(): void {
+    this.appointmentService.listCompleted(this.currentPage, this.pageSize)
+      .subscribe(response => {
+        this.completedAppointments = response.content;
+        this.totalElements = response.totalElements;
+        this.totalPages = Math.ceil(response.totalElements / this.pageSize);
+      });
   }
 }

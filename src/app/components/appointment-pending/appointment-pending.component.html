@@ -33,19 +33,8 @@
     </tbody>
   </table>
 
-  <div class="pagination-controls">
-    <button
-      class="pagination-btn"
-      [disabled]="currentPage === 0"
-      (click)="changePage(currentPage - 1)">
-      <span class="material-icons">keyboard_arrow_left</span> <!-- Seta para a esquerda -->
-    </button>
-    <span class="page-indicator">Página {{ currentPage + 1 }} de {{ totalPages }}</span>
-    <button
-      class="pagination-btn"
-      [disabled]="currentPage + 1 >= totalPages"
-      (click)="changePage(currentPage + 1)">
-      <span class="material-icons">keyboard_arrow_right</span> <!-- Seta para a direita -->
-    </button>
-  </div> 
+  <app-paginator 
+  [totalElements]="totalElements" 
+  (pageChange)="onPageChange($event)">
+</app-paginator>
 </div>

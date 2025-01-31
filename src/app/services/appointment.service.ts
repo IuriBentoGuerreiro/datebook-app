@@ -46,15 +46,14 @@ export class AppointmentService {
     return this.http.get<Pageable<AppointmentResponse>>(`${this.baseUrl}/appointments/completed`, { params });
   }
   
-  listPending(pageable: Pageable<AppointmentResponse>): Observable<Pageable<AppointmentResponse>> {
-    const params = {
-      page: pageable.page.toString(),
-      size: pageable.size.toString()
-    };
+  listPending(page: number, size: number): Observable<Pageable<AppointmentResponse>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+  
     return this.http.get<Pageable<AppointmentResponse>>(`${this.baseUrl}/appointments/pending`, { params });
   }
-  
-  MarkAsCompleted(id: number): Observable<any> {
+    MarkAsCompleted(id: number): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/appointments/${id}/completed`, null);
   }  
 }

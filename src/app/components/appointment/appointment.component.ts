@@ -9,11 +9,13 @@ import { AppointmentFormComponent } from '../appointment-form/appointment-form.c
 import { MatDialog } from '@angular/material/dialog';
 import { HeaderComponent } from '../header/header.component';
 import { Pageable } from '../../model/Pageable';
+import { PaginationComponent } from "../paginator/paginator.component";
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-appointment',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIconModule, HeaderComponent],
+  imports: [FormsModule, CommonModule, MatIconModule, HeaderComponent, PaginationComponent],
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.scss'],
 })
@@ -32,17 +34,22 @@ export class AppointmentComponent {
 
   constructor(private appointmentService: AppointmentService, public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    this.loadAppointments(this.currentPage, this.pageSize);
+  ngOnInit() {
+    this.loadAppointments(this.currentPage, this.pageSize); // Carregar a primeira página
+  }
+
+  onPageChange(event: PageEvent): void {
+    console.log('Página mudou:', event);
+    this.loadAppointments(event.pageIndex, event.pageSize);
   }
 
   loadAppointments(page: number, size: number): void {
     this.appointmentService.getAppointments({ page, size }).subscribe(
       (data) => {
-        this.appointments = data;
-        this.totalElements = this.appointments.totalElements; // Total de compromissos retornado pela API
-        this.totalPages = Math.ceil(this.totalElements / this.pageSize); // Cálculo correto do número de páginas
-        this.currentPage = page;
+        console.log('Resposta da API:', data);
+        this.appointments = data; // Atribuir os dados da resposta
+        this.totalElements = data.totalElements;
+        this.totalPages = Math.ceil(this.totalElements / this.pageSize); // Atualiza o número de páginas
       },
       (error) => {
         console.error('Erro ao carregar compromissos:', error);
@@ -50,15 +57,7 @@ export class AppointmentComponent {
       }
     );
   }
-
-  // Altera a página atual e recarrega os compromissos
-  changePage(page: number): void {
-    if (page >= 0 && page < this.totalPages) { // Verifica se a página está dentro do limite
-      this.currentPage = page;
-      this.loadAppointments(page, this.pageSize);
-    }
-  }
-
+  
   cancelEdit(): void {
     this.selectedAppointment = null;
     this.clearForm();
@@ -92,9 +91,7 @@ export class AppointmentComponent {
         this.loadAppointments(this.currentPage, this.pageSize); // Atualiza a lista de compromissos após o fechamento do diálogo
       }
     });
-  }
-  
-  
+  } 
 
   markAsCompleted(id: number): void {
     this.appointmentService.MarkAsCompleted(id).subscribe(
