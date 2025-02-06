@@ -6,7 +6,7 @@ import { LoadingComponent } from "./components/loading/loading.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoadingComponent],
+  imports: [RouterOutlet, LoadingComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
