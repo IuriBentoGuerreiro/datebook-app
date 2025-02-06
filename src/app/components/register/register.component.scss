@@ -8,7 +8,7 @@ $border-color: #cccccc;
 $background-color: #ffffff;
 $input-background: #f9f9f9;
 $shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);  
+$shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
 
 // Mixins
 @mixin transition($props...) {
@@ -118,34 +118,6 @@ input {
   &:active {
     background-color: $primary-active;
     transform: translateY(0);
-  }
-}
-
-.forget-password{
-    margin-top: 20px;
-    text-align: left;
-}
-
-.register{
-    margin-top: 20px;
-    text-align: right;
-}
-
-.auth-links {
-    display: flex;
-    justify-content: space-between; // Alinha um à esquerda e outro à direita
-    width: 100%;
-    
-    a {
-    color: $primary-color;
-    text-decoration: none;
-    font-size: 0.9rem;
-    @include transition(color);
-
-    &:hover {
-      color: $primary-active;
-      text-decoration: underline;
-    }
   }
 }
 
