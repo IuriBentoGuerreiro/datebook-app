@@ -4,14 +4,14 @@
     <div class="form-container">
       <div class="input-group">
         <label class="input-label" for="username">Usuário</label>
-        <input type="text" id="username" placeholder="Seu nome de usuário">
+        <input type="text" id="username" [(ngModel)]="username" placeholder="Seu nome de usuário">
       </div>
   
       <div class="input-group">
         <label class="input-label" for="password">Senha</label>
-        <input type="password" id="password" placeholder="Sua senha">
+        <input type="password" id="password" [(ngModel)]="password" placeholder="Sua senha">
       </div>
   
-      <button class="submit-btn">Entrar</button>
+      <button class="submit-btn" (click)="onRegister()"> Entrar</button>
     </div>
   </div>  

@@ -4,20 +4,20 @@
   <div class="form-container">
     <div class="input-group">
       <label class="input-label" for="username">Usuário</label>
-      <input type="text" id="username" placeholder="Seu nome de usuário">
+      <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="Seu nome de usuário" />
     </div>
 
     <div class="input-group">
       <label class="input-label" for="password">Senha</label>
-      <input type="password" id="password" placeholder="Sua senha">
+      <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Sua senha" />
     </div>
 
-    <button class="submit-btn">Entrar</button>
+    <button class="submit-btn" (click)="onLogin()">Entrar</button>
   </div>
 
   <div class="auth-links">
     <a class="forget-password" href="#">Esqueci minha senha</a>
-    <br>
+    <br />
     <a class="register" href="#">Cadastrar-se</a>
   </div>
-</div>  
+</div>
