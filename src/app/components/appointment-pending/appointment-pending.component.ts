@@ -11,7 +11,7 @@ import { PaginationComponent } from '../paginator/paginator.component';
 @Component({
   selector: 'app-appointment-pending',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, MatIconModule, PaginationComponent],
+  imports: [CommonModule, MatIconModule, PaginationComponent],
   templateUrl: './appointment-pending.component.html',
   styleUrls: ['./appointment-pending.component.scss']
 })

@@ -10,7 +10,7 @@ import { Pageable } from '../../model/Pageable';
 @Component({
   selector: 'app-appointment-completed',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, PaginationComponent],
+  imports: [CommonModule, PaginationComponent],
   templateUrl: './appointment-completed.component.html',
   styleUrls: ['./appointment-completed.component.scss']
 })

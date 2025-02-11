@@ -15,7 +15,7 @@ import { PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-appointment',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIconModule, HeaderComponent, PaginationComponent],
+  imports: [FormsModule, CommonModule, MatIconModule, PaginationComponent],
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.scss'],
 })
