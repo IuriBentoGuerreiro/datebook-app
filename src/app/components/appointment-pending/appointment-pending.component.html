@@ -1,7 +1,5 @@
 <div class="container">
   <h1 class="title">Compromissos Pendentes</h1>
-
-  <!-- Tabela de compromissos -->
   <table class="appointment-table">
     <thead>
       <tr>
@@ -24,15 +22,11 @@
         </td>
         <td>
           <button class="status-btn" (click)="markAsCompleted(appt.id)">
-            <mat-icon>check</mat-icon>
+            <mat-icon>check_box</mat-icon>
           </button>
         </td>
       </tr>
     </tbody>
   </table>
-
-  <app-paginator 
-  [totalElements]="totalElements" 
-  (pageChange)="onPageChange($event)">
-</app-paginator>
+  <app-paginator [totalElements]="totalElements" (pageChange)="onPageChange($event)"></app-paginator>
 </div>

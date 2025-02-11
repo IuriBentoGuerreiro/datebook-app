@@ -19,7 +19,6 @@
   margin-top: 40px;
 }
 
-/* Título */
 .title {
   text-align: center;
   color: #4a4a4a;
@@ -28,35 +27,8 @@
   font-weight: 700;
 }
 
-/* Botão Adicionar */
-.add-btn {
-  position: fixed;
-  top: 70px;
-  margin-top: 30px;
-  right: 30px;
-  display: block;
-  width: 65px;
-  padding: 12px 20px;
-  background-color: #6200ea;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 2rem;
-  transition: background-color 0.3s ease;
-  text-align: center;
-  z-index: 1000;
-}
-
-.add-btn:hover {
-  background-color: #3700b3;
-}
-
-/* Tabela */
 .appointment-table {
   width: 100%;
-  max-width: 800px;
   border-collapse: collapse;
   margin-top: 2rem;
   text-align: center;
@@ -75,58 +47,24 @@
   font-size: 1rem;
 }
 
-.appointment-table td {
-  background-color: #f9f9f9;
-}
-
-.appointment-table tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Botões de ação */
-.delete-btn {
-  background-color: #ff0000;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.delete-btn:hover {
-  background-color: #960000;
-}
-
-.update-btn {
-  background-color: #ff5e00;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.update-btn:hover {
-  background-color: #db4500;
-}
-
 .status-btn {
-  background-color: #1eff00;
-  color: white;
-  padding: 8px 12px;
+  background: transparent;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #1eff00;
 }
 
 .status-btn:hover {
-  background-color: #208a00;
+  color: #208a00;
 }
 
-/* Status */
 .status-completed {
   color: green;
   font-weight: bold;
@@ -137,119 +75,13 @@
   font-weight: bold;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .add-btn,
-  .delete-btn,
-  .update-btn,
-  .status-btn {
-    font-size: 0.9rem;
-    padding: 10px 14px;
-  }
-
-  .appointment-table th,
-  .appointment-table td {
-    padding: 10px;
-    font-size: 0.9rem;
-  }
-
-  .add-btn {
-    right: 10px;
-    top: 50px;
-    width: 50px;
-  }
+  .container { padding: 1rem; }
+  .title { font-size: 1.5rem; }
+  .appointment-table th, .appointment-table td { padding: 10px; font-size: 0.9rem; }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .title {
-    font-size: 1.3rem;
-  }
-
-  .add-btn,
-  .delete-btn,
-  .update-btn,
-  .status-btn {
-    font-size: 0.8rem;
-    padding: 8px 10px;
-  }
-
-  .appointment-table th,
-  .appointment-table td {
-    padding: 8px;
-    font-size: 0.8rem;
-  }
-
-  .add-btn {
-    width: 45px;
-    padding: 8px;
-  }
-
-  .pagination-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    gap: 15px; /* Espaço entre os elementos */
-  }
-  
-  .pagination-btn {
-    background-color: #f5f5f5; /* Fundo branco discreto */
-    color: #333; /* Cor do texto */
-    border: 1px solid #ccc; /* Borda cinza discreta */
-    padding: 8px; /* Botões menores */
-    font-size: 16px; /* Tamanho do ícone */
-    width: 40px; /* Largura fixa */
-    height: 40px; /* Altura fixa */
-    border-radius: 5px; /* Borda levemente arredondada */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Suaviza os efeitos de hover */
-  }
-  
-  .pagination-btn:hover {
-    background-color: #e0e0e0; /* Efeito de hover para um tom mais escuro de branco */
-    border-color: #aaa; /* Muda a cor da borda no hover */
-    transform: translateY(-2px); /* Dá um efeito de elevação */
-  }
-  
-  .pagination-btn:disabled {
-    background-color: #ccc; /* Fundo cinza para o botão desativado */
-    color: #777; /* Texto cinza claro */
-    border-color: #ddd; /* Borda mais clara */
-    cursor: not-allowed; /* Ícone de não permitido */
-    opacity: 0.6; /* Reduz a opacidade */
-  }
-  
-  .page-indicator {
-    font-size: 16px; /* Tamanho do texto para a indicação da página */
-    color: #333333; /* Cor do texto */
-    font-weight: normal;
-  }
-  
-  @media (max-width: 600px) {
-    .pagination-controls {
-      flex-direction: column; /* Alinha os elementos verticalmente */
-      gap: 10px; /* Reduz o espaço entre os elementos */
-    }
-  
-    .pagination-btn {
-      width: 35px; /* Reduz o tamanho dos botões em telas pequenas */
-      height: 35px; /* Ajusta a altura */
-      font-size: 14px; /* Reduz o tamanho do ícone */
-    }
-  }
+  .title { font-size: 1.3rem; }
+  .appointment-table th, .appointment-table td { padding: 8px; font-size: 0.8rem; }
 }
