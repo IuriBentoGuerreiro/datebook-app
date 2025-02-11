@@ -10,7 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AuthInterceptor } from './interceptors/auth.interceptor.spec';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
