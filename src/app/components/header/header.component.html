@@ -1,8 +1,19 @@
 <header class="header">
-  <a href="/home" class="icon"><mat-icon>home</mat-icon></a>
+  <div class="logo">
+    <a routerLink="/home">
+      <mat-icon class="logo-home">home</mat-icon> <!-- Ícone de home -->
+    </a>
+  </div>
   <nav class="nav">
-    <a href="/appointment">Compromissos</a>
-    <a href="/pending">Estatísticas</a>
-    <a href="#">Perfil</a>
+    <a mat-button routerLink="/appointment">Compromissos</a>
+    <div class="dropdown">
+      <button mat-button [matMenuTriggerFor]="statisticMenu">Estatísticas<mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #statisticMenu="matMenu">
+        <button mat-menu-item routerLink="/completed">Completos</button>
+        <button mat-menu-item routerLink="/pending">Pendentes</button>
+      </mat-menu>
+    </div>
+    <a mat-button routerLink="/perfil">Perfil</a>
   </nav>
 </header>
