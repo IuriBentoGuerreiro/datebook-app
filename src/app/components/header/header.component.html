@@ -5,15 +5,26 @@
     </a>
   </div>
   <nav class="nav">
-    <a mat-button routerLink="/appointment">Compromissos</a>
     <div class="dropdown">
-      <button mat-button [matMenuTriggerFor]="statisticMenu">Estatísticas<mat-icon>keyboard_arrow_down</mat-icon>
+      <button mat-button [matMenuTriggerFor]="compromissosMenu">
+        Compromissos <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
-      <mat-menu #statisticMenu="matMenu">
+      <mat-menu #compromissosMenu="matMenu">
+        <button mat-menu-item routerLink="/appointment">Todos</button>
         <button mat-menu-item routerLink="/completed">Completos</button>
         <button mat-menu-item routerLink="/pending">Pendentes</button>
       </mat-menu>
     </div>
-    <a mat-button routerLink="/perfil">Perfil</a>
+
+    <div class="dropdown">
+      <button mat-button [matMenuTriggerFor]="perfilMenu">
+        Perfil <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #perfilMenu="matMenu">
+        <button mat-menu-item routerLink="/login">Login</button>
+        <button mat-menu-item routerLink="/register">Cadastrar-se</button>
+        <button mat-menu-item routerLink="/">Sair</button>
+      </mat-menu>
+    </div>
   </nav>
 </header>
