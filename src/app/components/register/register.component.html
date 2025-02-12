@@ -1,24 +1,39 @@
 <div class="login-box">
   <h1 class="title">Cadastro</h1>
 
-  <div class="form-container">
+  <div class="form-container" [formGroup]="registerForm">
     <div class="input-group">
       <label class="input-label" for="username">Usuário</label>
-      <input type="text" id="username" [(ngModel)]="username" placeholder="Seu nome de usuário">
+      <input 
+        type="text" 
+        id="username" 
+        formControlName="username" 
+        placeholder="Seu nome de usuário" 
+        (blur)="checkUsername()">
+      <p class="error-message" *ngIf="usernameTaken">{{ errorMessage }}</p>
     </div>
 
     <div class="input-group">
       <label class="input-label" for="password">Senha</label>
-      <input type="password" id="password" [(ngModel)]="password" placeholder="Sua senha">
+      <input 
+        type="password" 
+        id="password" 
+        formControlName="password" 
+        placeholder="Sua senha">
     </div>
 
     <div class="input-group">
       <label class="input-label" for="confirmPassword">Confirmar Senha</label>
-      <input type="password" id="confirmPassword" [(ngModel)]="passwordConfirm" placeholder="Confirme sua senha">
+      <input 
+        type="password" 
+        id="confirmPassword" 
+        formControlName="passwordConfirm" 
+        placeholder="Confirme sua senha">
+      <p class="error-message" *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('passwordConfirm')?.touched">
+        As senhas precisam ser iguais.
+      </p>
     </div>
 
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-    <button class="submit-btn" (click)="onRegister()">Cadastrar</button>
+    <button class="submit-btn" (click)="onRegister()" [disabled]="registerForm.invalid || usernameTaken">Cadastrar</button>
   </div>
 </div>

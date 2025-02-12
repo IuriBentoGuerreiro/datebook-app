@@ -111,4 +111,8 @@ export class AuthService{
       return null;
     }
   }
+
+  checkUsername(username: string): Observable<{ exists: boolean }> {
+    return this.http.get<{ exists: boolean }>(`${this.baseUrl}check-username?username=${username}`);
+  }
 }
