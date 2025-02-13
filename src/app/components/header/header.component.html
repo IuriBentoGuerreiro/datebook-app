@@ -23,7 +23,7 @@
       <mat-menu #perfilMenu="matMenu">
         <button mat-menu-item routerLink="/login">Login</button>
         <button mat-menu-item routerLink="/register">Cadastrar-se</button>
-        <button mat-menu-item routerLink="/">Sair</button>
+        <button mat-menu-item (click)="logout()">Sair</button>
       </mat-menu>
     </div>
   </nav>

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIcon } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +21,20 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   isMenuVisible = false;
 
+  constructor(private router: Router){}
+
   toggleMenu() {
     this.isMenuVisible = !this.isMenuVisible;
   }
+
+  logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('refresh_token');
+    
+    localStorage.removeItem('token');
+    localStorage.removeItem('refresh_token');
+
+    this.router.navigate(['/home']); // Redireciona para a tela de login
+  }
+
 }
