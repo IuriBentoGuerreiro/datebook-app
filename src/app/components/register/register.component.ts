@@ -7,13 +7,14 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  isSubmitting = false;
   registerForm: FormGroup;
-  usernameTaken: boolean = false; // Indica se o nome de usuário já está em uso
+  usernameTaken: boolean = false;
   errorMessage: string = '';
 
   constructor(
@@ -22,17 +23,15 @@ export class RegisterComponent {
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {
-    // Inicializa o formulário com as validações
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       passwordConfirm: ['', Validators.required]
     }, { 
-      validator: this.passwordsMatchValidator // Validador customizado para verificar se as senhas são iguais
+      validator: this.passwordsMatchValidator 
     });
   }
 
-  // Validador customizado para verificar se as senhas são iguais
   passwordsMatchValidator(group: FormGroup) {
     const password = group.get('password')?.value;
     const passwordConfirm = group.get('passwordConfirm')?.value;
@@ -40,7 +39,6 @@ export class RegisterComponent {
   }
 
   onRegister(): void {
-    // Não envia o formulário se ele for inválido
     if (this.registerForm.invalid || this.usernameTaken) {
       return;
     }
@@ -50,7 +48,6 @@ export class RegisterComponent {
       password: this.registerForm.value.password
     };
 
-    // Chama o método de registro do AuthService
     this.authService.register(user).subscribe(
       (response)=>{
         console.log("registro bem sucedido")
@@ -60,27 +57,27 @@ export class RegisterComponent {
   }
 
   checkUsername(): void {
-    const username = this.registerForm.get('username')?.value?.trim(); // Remove espaços extras
+    const username = this.registerForm.get('username')?.value?.trim();
   
     if (username) {
       this.authService.checkUsername(username).subscribe({
         next: (response) => {
-          console.log('Resposta da API:', response); // Depuração
+          console.log('Resposta da API:', response);
   
-          this.usernameTaken = response.exists; // Verifica se já existe
+          this.usernameTaken = response.exists;
   
           if (this.usernameTaken) {
             this.errorMessage = 'Esse nome de usuário já está em uso.';
           } else {
-            this.errorMessage = ''; // Limpa a mensagem de erro
+            this.errorMessage = ''; 
           }
   
-          this.cdr.detectChanges(); // Força a atualização do Angular
+          this.cdr.detectChanges();
         },
         error: (error) => {
           console.error('Erro ao verificar o nome de usuário:', error);
           this.errorMessage = 'Erro ao verificar o nome de usuário. Tente novamente.';
-          this.cdr.detectChanges(); // Atualiza a tela em caso de erro
+          this.cdr.detectChanges();
         }
       });
     }

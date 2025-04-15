@@ -1,217 +1,141 @@
-// Variáveis
-$primary-color: #6200ea;
-$primary-hover: #3700b3;
-$primary-active: #303f9f;
-$text-color: #333;
-$label-color: #666;
-$border-color: #cccccc;
-$background-color: #ffffff;
-$input-background: #f9f9f9;
-$shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);  
-
-// Mixins
-@mixin transition($props...) {
-  transition: $props 0.3s ease;
-}
-
-@mixin input-style {
-  width: 100%;
-  padding: 0.7rem;
-  border-radius: 0.4rem;
-  border: 1px solid $border-color;
-  font-size: 1rem;
-  background-color: $input-background;
-  @include transition(border-color, box-shadow);
-}
-
-@mixin button-style {
-  width: 100%;
-  padding: 0.7rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.4rem;
-  cursor: pointer;
-  @include transition(background-color, transform);
-}
-
-// Estilos gerais
 :host {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.left-panel {
+  flex: 1;
+  background-color: #f5f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-right: 1px solid #e0e0e0;
+
+  img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.right-panel {
+  flex: 1;
+  background-color: #eef1f8;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: $background-color;
-  font-family: 'Inter', sans-serif;
-  padding: 1rem;
-}
-
-// Caixa de login
-.login-box {
-  background-color: $background-color;
-  border-radius: 0.6rem;
   padding: 2rem;
-  width: 100%;
-  max-width: 24rem;
-  box-shadow: $shadow;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @include transition(box-shadow);
 
-  &:hover {
-    box-shadow: $shadow-hover;
-  }
-}
-
-// Título
-.title {
-  color: $text-color;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-// Formulário
-.form-container {
-  width: 100%;
-}
-
-// Grupos de inputs
-.input-group {
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-// Labels
-.input-label {
-  display: block;
-  font-size: 0.9rem;
-  color: $label-color;
-  font-weight: 500;
-  margin-bottom: 0.4rem;
-}
-
-// Inputs
-input {
-  @include input-style;
-
-  &:focus {
-    outline: none;
-    border-color: $primary-color;
-    box-shadow: 0 0 4px rgba($primary-color, 0.3);
-  }
-}
-
-// Botão de envio
-.submit-btn {
-  background-color: $primary-color;
-  color: $background-color;
-  @include button-style;
-
-  &:hover {
-    background-color: $primary-hover;
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    background-color: $primary-active;
-    transform: translateY(0);
-  }
-}
-
-.forget-password{
-    margin-top: 20px;
-    text-align: left;
-}
-
-.register{
-    margin-top: 20px;
-    text-align: right;
-}
-
-.auth-links {
-    display: flex;
-    justify-content: space-between; // Alinha um à esquerda e outro à direita
+  .form-wrapper {
+    background-color: #ffffff;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     width: 100%;
-    
-    a {
-    color: $primary-color;
-    text-decoration: none;
-    font-size: 0.9rem;
-    @include transition(color);
+    max-width: 400px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #3f51b5;
+    font-weight: 600;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #444;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #3f51b5;
+      }
+    }
+
+    .error {
+      color: #d32f2f;
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3f51b5;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      color: $primary-active;
-      text-decoration: underline;
+      background-color: #303f9f;
+    }
+
+    &:disabled {
+      background-color: #9fa8da;
+      cursor: not-allowed;
+    }
+  }
+
+  .auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+
+    a {
+      display: inline-block;
+      color: #3f51b5;
+      font-size: 0.9rem;
+      text-decoration: none;
+      margin-top: 0.5rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.register {
+        font-weight: 600;
+      }
     }
   }
 }
 
-// Responsividade
 @media (max-width: 768px) {
-  .login-box {
-    padding: 1.8rem;
-    max-width: 22rem;
+  :host {
+    flex-direction: column;
   }
 
-  .title {
-    font-size: 1.4rem;
+  .left-panel {
+    display: none;
   }
 
-  .input-label {
-    font-size: 0.85rem;
-  }
+  .right-panel {
+    flex: 1;
+    padding: 2rem;
 
-  input,
-  .submit-btn,
-  .auth-links a {
-    font-size: 0.9rem;
+    .form-wrapper {
+      padding: 2rem;
+    }
   }
-}
-
-@media (max-width: 576px) {
-  .login-box {
-    padding: 1.5rem;
-    max-width: 20rem;
-  }
-
-  .title {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .login-box {
-    max-width: 18rem;
-  }
-
-  .title {
-    font-size: 1.2rem;
-  }
-}
-
-// Efeito de entrada animada
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.login-box {
-  animation: fadeIn 0.5s ease-out;
-}
-
-// ⚪ Botão de cadastro
-.register-btn {
-    background-color: transparent;
-    color: $primary-color;
-    border: 2px solid $primary-color;
-    @include button-style;
 }

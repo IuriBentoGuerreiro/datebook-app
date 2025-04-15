@@ -1,29 +1,50 @@
 <header class="header">
   <div class="logo">
     <a routerLink="/home">
-      <mat-icon class="logo-home">home</mat-icon> <!-- Ícone de home -->
+      <mat-icon class="logo-home">home</mat-icon>
     </a>
   </div>
+  
   <nav class="nav">
     <div class="dropdown">
       <button mat-button [matMenuTriggerFor]="compromissosMenu">
-        Compromissos <mat-icon>keyboard_arrow_down</mat-icon>
+        <span>Compromissos</span>
+        <mat-icon>expand_more</mat-icon>
       </button>
       <mat-menu #compromissosMenu="matMenu">
-        <button mat-menu-item routerLink="/appointment">Todos</button>
-        <button mat-menu-item routerLink="/completed">Completos</button>
-        <button mat-menu-item routerLink="/pending">Pendentes</button>
+        <button mat-menu-item routerLink="/appointment">
+          <mat-icon>list_alt</mat-icon>
+          <span>Todos</span>
+        </button>
+        <button mat-menu-item routerLink="/completed">
+          <mat-icon>check_circle</mat-icon>
+          <span>Completos</span>
+        </button>
+        <button mat-menu-item routerLink="/pending">
+          <mat-icon>pending_actions</mat-icon>
+          <span>Pendentes</span>
+        </button>
       </mat-menu>
     </div>
 
     <div class="dropdown">
       <button mat-button [matMenuTriggerFor]="perfilMenu">
-        Perfil <mat-icon>keyboard_arrow_down</mat-icon>
+        <span>Perfil</span>
+        <mat-icon>expand_more</mat-icon>
       </button>
       <mat-menu #perfilMenu="matMenu">
-        <button mat-menu-item routerLink="/login">Login</button>
-        <button mat-menu-item routerLink="/register">Cadastrar-se</button>
-        <button mat-menu-item (click)="logout()">Sair</button>
+        <button mat-menu-item routerLink="/login">
+          <mat-icon>login</mat-icon>
+          <span>Login</span>
+        </button>
+        <button mat-menu-item routerLink="/register">
+          <mat-icon>person_add</mat-icon>
+          <span>Cadastrar-se</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Sair</span>
+        </button>
       </mat-menu>
     </div>
   </nav>

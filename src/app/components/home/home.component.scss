@@ -1,174 +1,344 @@
-/* Header */
-app-header {
-    position: fixed; /* Fixa o header no topo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Garante que fique acima do conteúdo */
-    background-color: #3f51b5; /* Cor do cabeçalho */
-    color: white;
-    height: 60px; /* Altura do cabeçalho */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+// Variáveis de cores e espaçamento
+$primary-color: #3f51b5;
+$accent-color: #ff4081;
+$text-color: #333;
+$light-text: #fff;
+$background-color: #f5f7fa;
+$card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$border-radius: 8px;
+
+// Breakpoints para responsividade
+$breakpoint-xs: 480px;   // Smartphones pequenos
+$breakpoint-sm: 768px;   // Tablets e smartphones
+$breakpoint-md: 992px;   // Desktops pequenos e tablets grandes
+$breakpoint-lg: 1200px;  // Desktops grandes
+
+// Mixins para media queries
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: $breakpoint-xs) { @content; }
+  } @else if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  }
+}
+
+// Estilo global para o componente
+.home-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-md;
+  font-family: 'Roboto', sans-serif;
+  color: $text-color;
+  background-color: $background-color;
+  min-height: 100vh;
+  
+  @include respond-to(sm) {
+    padding: $spacing-sm;
   }
   
-  /* Home Container */
-  .home-container {
-    margin-top: 60px; /* Compensa a altura do cabeçalho */
-    padding: 2rem;
+  @include respond-to(xs) {
+    padding: $spacing-xs;
+  }
+}
+
+// Seção de boas-vindas
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: $spacing-lg $spacing-md;
+  margin-bottom: $spacing-lg;
+  background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
+  color: $light-text;
+  border-radius: $border-radius;
+  box-shadow: $card-shadow;
   
-    /* Welcome Section */
-    .welcome-section {
-      text-align: center;
-      margin-bottom: 3rem;
-  
-      h1 {
-        font-size: 2rem;
-        color: #3f51b5;
-      }
-  
-      p {
-        font-size: 1rem;
-        color: #666;
-      }
-  
-      button {
-        margin-top: 1rem;
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-      }
-    }
-  
-    /* Features Section */
-    .features-section {
-      h2 {
-        text-align: center;
-        margin-bottom: 2rem;
-        font-size: 1.8rem;
-      }
-  
-      .features-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: center;
-  
-        .feature-card {
-          background: #f9f9f9;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          padding: 1.5rem;
-          text-align: center;
-          max-width: 300px;
-          flex: 1 1 calc(33.33% - 1.5rem); /* Responsividade */
-          box-sizing: border-box;
-  
-          .feature-icon {
-            font-size: 2rem;
-            color: #3f51b5;
-            margin-bottom: 1rem;
-          }
-  
-          h3 {
-            font-size: 1.3rem;
-            margin: 0.5rem 0;
-          }
-  
-          p {
-            font-size: 1rem;
-            color: #666;
-          }
-        }
-      }
-    }
+  @include respond-to(md) {
+    padding: $spacing-md;
+    margin-bottom: $spacing-md;
   }
   
-  /* Responsividade */
-  @media (max-width: 1024px) {
-    .home-container .features-grid .feature-card {
-      flex: 1 1 calc(50% - 1.5rem); /* 2 colunas em telas médias */
-    }
+  @include respond-to(xs) {
+    padding: $spacing-sm;
+    margin-bottom: $spacing-sm;
+  }
   
-    .welcome-section h1 {
-      font-size: 1.8rem; /* Reduz o tamanho do título */
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: $spacing-sm;
+    font-weight: 700;
+    
+    @include respond-to(md) {
+      font-size: 2rem;
     }
-  
-    .welcome-section p {
-      font-size: 0.9rem; /* Reduz o tamanho do texto */
+    
+    @include respond-to(sm) {
+      font-size: 1.8rem;
     }
-  
-    .features-section h2 {
+    
+    @include respond-to(xs) {
       font-size: 1.5rem;
+      margin-bottom: $spacing-xs;
     }
   }
   
-  @media (max-width: 768px) {
-    .home-container {
-      padding: 1rem; /* Reduz o espaçamento geral */
+  p {
+    font-size: 1.2rem;
+    margin-bottom: $spacing-md;
+    max-width: 600px;
+    line-height: 1.6;
+    
+    @include respond-to(md) {
+      font-size: 1.1rem;
+      margin-bottom: $spacing-sm;
     }
-  
-    .home-container .features-grid .feature-card {
-      flex: 1 1 100%; /* Cada card ocupa 100% da largura */
-      margin-bottom: 1rem; /* Espaçamento entre os cards */
-    }
-  
-    .welcome-section {
-      text-align: center;
-      padding: 1rem; /* Reduz a margem em telas menores */
-    }
-  
-    .welcome-section h1 {
-      font-size: 1.4rem; /* Ajusta o tamanho do título */
-      line-height: 1.4; /* Melhora a leitura */
-    }
-  
-    .welcome-section p {
-      font-size: 0.9rem; /* Ajusta o texto */
-      line-height: 1.6;
-    }
-  
-    .welcome-section button {
-      padding: 0.7rem 1.2rem; /* Ajusta o tamanho do botão */
-      font-size: 0.95rem;
-      width: 100%; /* Botão ocupa toda a largura em dispositivos menores */
-      max-width: 300px; /* Limita a largura máxima do botão */
-      margin: 0 auto; /* Centraliza o botão */
-    }
-  
-    .features-section {
-      padding: 0.5rem;
-    }
-  
-    .features-section h2 {
-      font-size: 1.3rem; /* Ajusta o tamanho do título */
-      margin-bottom: 1rem; /* Reduz o espaçamento abaixo do título */
-    }
-  
-    .features-grid {
-      gap: 1rem; /* Reduz o espaço entre os cards */
-    }
-  
-    .features-grid .feature-card {
-      padding: 1rem; /* Reduz o preenchimento interno dos cards */
-      font-size: 0.9rem; /* Ajusta o tamanho do texto nos cards */
-    }
-  
-    .feature-card .feature-icon {
-      font-size: 2rem; /* Ajusta o tamanho do ícone */
-    }
-  }
-  
-  
-  @media (max-width: 480px) {
-    .welcome-section h1 {
-      font-size: 1.2rem;
-    }
-  
-    .welcome-section p {
-      font-size: 0.8rem;
-    }
-  
-    .features-section h2 {
+    
+    @include respond-to(sm) {
       font-size: 1rem;
     }
+    
+    @include respond-to(xs) {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: $spacing-sm;
+    }
   }
   
+  button {
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    @include respond-to(sm) {
+      padding: 10px 24px;
+      font-size: 0.9rem;
+    }
+    
+    @include respond-to(xs) {
+      padding: 8px 20px;
+      font-size: 0.85rem;
+    }
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    mat-icon {
+      margin-right: 8px;
+      vertical-align: middle;
+      
+      @include respond-to(xs) {
+        margin-right: 4px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+// Seção de funcionalidades
+.features-section {
+  padding: $spacing-md 0;
+  
+  @include respond-to(sm) {
+    padding: $spacing-sm 0;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: $spacing-md;
+    position: relative;
+    
+    @include respond-to(md) {
+      font-size: 1.8rem;
+      margin-bottom: $spacing-sm;
+    }
+    
+    @include respond-to(xs) {
+      font-size: 1.5rem;
+    }
+    
+    &:after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: $accent-color;
+      margin: 12px auto 0;
+      border-radius: 2px;
+      
+      @include respond-to(xs) {
+        width: 40px;
+        height: 3px;
+        margin: 8px auto 0;
+      }
+    }
+  }
+}
+
+// Grid de funcionalidades
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-md;
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-sm;
+  }
+  
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-card {
+    background-color: white;
+    padding: $spacing-md;
+    border-radius: $border-radius;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: $card-shadow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @include respond-to(md) {
+      padding: $spacing-sm;
+    }
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      height: 2.5rem;
+      width: 2.5rem;
+      color: $primary-color;
+      margin-bottom: $spacing-sm;
+      
+      @include respond-to(md) {
+        font-size: 2rem;
+        height: 2rem;
+        width: 2rem;
+      }
+      
+      @include respond-to(xs) {
+        font-size: 1.8rem;
+        height: 1.8rem;
+        width: 1.8rem;
+        margin-bottom: $spacing-xs;
+      }
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: $spacing-sm;
+      color: $primary-color;
+      
+      @include respond-to(md) {
+        font-size: 1.3rem;
+      }
+      
+      @include respond-to(xs) {
+        font-size: 1.1rem;
+        margin-bottom: $spacing-xs;
+      }
+    }
+    
+    p {
+      color: lighten($text-color, 20%);
+      line-height: 1.5;
+      
+      @include respond-to(xs) {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+// Adaptação para dispositivos sensíveis ao toque
+@media (hover: none) {
+  .feature-card:hover, button:hover {
+    transform: none;
+    box-shadow: $card-shadow;
+  }
+}
+
+// Orientação paisagem em dispositivos móveis
+@media (max-width: $breakpoint-sm) and (orientation: landscape) {
+  .welcome-section {
+    padding: $spacing-sm;
+    
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: $spacing-xs;
+    }
+    
+    p {
+      font-size: 0.9rem;
+      margin-bottom: $spacing-sm;
+    }
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Suporte a telas muito grandes
+@media (min-width: 1600px) {
+  .home-container {
+    max-width: 1400px;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Impressão
+@media print {
+  .home-container {
+    background: white;
+    color: black;
+    padding: 0;
+  }
+  
+  .welcome-section {
+    background: white;
+    color: black;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .feature-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+  
+  button {
+    display: none;
+  }
+}

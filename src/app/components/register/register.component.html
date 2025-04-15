@@ -1,39 +1,52 @@
-<div class="login-box">
-  <h1 class="title">Cadastro</h1>
+<div class="left-panel">
+  <img src="assets/illustration.avif" alt="Register Illustration" />
+</div>
 
-  <div class="form-container" [formGroup]="registerForm">
-    <div class="input-group">
-      <label class="input-label" for="username">Usuário</label>
-      <input 
-        type="text" 
-        id="username" 
-        formControlName="username" 
-        placeholder="Seu nome de usuário" 
-        (blur)="checkUsername()">
-      <p class="error-message" *ngIf="usernameTaken">{{ errorMessage }}</p>
-    </div>
+<div class="right-panel">
+  <div class="form-wrapper">
+    <h2>Crie sua conta</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="form-group">
+        <label for="username">Nome de Usuário</label>
+        <input 
+          id="username" 
+          type="text" 
+          formControlName="username" 
+          (blur)="checkUsername()" 
+        />
+        <div *ngIf="usernameTaken" class="error">{{ errorMessage }}</div>
+      </div>
 
-    <div class="input-group">
-      <label class="input-label" for="password">Senha</label>
-      <input 
-        type="password" 
-        id="password" 
-        formControlName="password" 
-        placeholder="Sua senha">
-    </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input 
+          id="password" 
+          type="password" 
+          formControlName="password" 
+        />
+      </div>
 
-    <div class="input-group">
-      <label class="input-label" for="confirmPassword">Confirmar Senha</label>
-      <input 
-        type="password" 
-        id="confirmPassword" 
-        formControlName="passwordConfirm" 
-        placeholder="Confirme sua senha">
-      <p class="error-message" *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('passwordConfirm')?.touched">
-        As senhas precisam ser iguais.
-      </p>
-    </div>
+      <div class="form-group">
+        <label for="passwordConfirm">Confirmar Senha</label>
+        <input 
+          id="passwordConfirm" 
+          type="password" 
+          formControlName="passwordConfirm"
+        />
+        <div 
+          *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('passwordConfirm')?.touched" 
+          class="error"
+        >
+          As senhas não coincidem.
+        </div>
+      </div>
 
-    <button class="submit-btn" (click)="onRegister()" [disabled]="registerForm.invalid || usernameTaken">Cadastrar</button>
+      <button 
+        type="submit" 
+        [disabled]="registerForm.invalid || usernameTaken || isSubmitting"
+      >
+        Registrar
+      </button>
+    </form>
   </div>
 </div>
