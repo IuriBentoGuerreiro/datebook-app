@@ -1,344 +1,175 @@
-// Variáveis de cores e espaçamento
-$primary-color: #3f51b5;
-$accent-color: #ff4081;
-$text-color: #333;
-$light-text: #fff;
-$background-color: #f5f7fa;
-$card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-$spacing-xs: 0.5rem;
-$spacing-sm: 1rem;
-$spacing-md: 2rem;
-$spacing-lg: 4rem;
-$border-radius: 8px;
+// Variáveis
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 32px;
+$spacing-xl: 64px;
 
-// Breakpoints para responsividade
-$breakpoint-xs: 480px;   // Smartphones pequenos
-$breakpoint-sm: 768px;   // Tablets e smartphones
-$breakpoint-md: 992px;   // Desktops pequenos e tablets grandes
-$breakpoint-lg: 1200px;  // Desktops grandes
+$font-size-base: 16px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+$color-primary: #6a0dad;
+$color-text-button: #e2e2e2;
+$color-secondary: #000000;
+$color-text: #3a3a3a;
+$color-light: #383838;
+$color-card-bg: #f5f5f5;
+$color-border: #e0e0e0;
+$color-hover: rgba(0, 0, 0, 0.1);
+$color-button-bg: #6a0dad;
+$color-button-hover: #5e0b94;
 
-// Mixins para media queries
 @mixin respond-to($breakpoint) {
-  @if $breakpoint == xs {
-    @media (max-width: $breakpoint-xs) { @content; }
-  } @else if $breakpoint == sm {
-    @media (max-width: $breakpoint-sm) { @content; }
-  } @else if $breakpoint == md {
-    @media (max-width: $breakpoint-md) { @content; }
-  } @else if $breakpoint == lg {
-    @media (max-width: $breakpoint-lg) { @content; }
+  @if $breakpoint == sm {
+    @media (max-width: 600px) { @content; }
+  }
+  @else if $breakpoint == md {
+    @media (max-width: 900px) { @content; }
+  }
+  @else if $breakpoint == lg {
+    @media (max-width: 1200px) { @content; }
   }
 }
 
-// Estilo global para o componente
-.home-container {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: $color-secondary;
+  color: $color-text;
   width: 100%;
-  max-width: 1200px;
+  height: 100%;
+}
+
+.home-container {
+  padding: $spacing-xl $spacing-lg;
+  max-width: 100%;
   margin: 0 auto;
-  padding: $spacing-md;
-  font-family: 'Roboto', sans-serif;
-  color: $text-color;
-  background-color: $background-color;
-  min-height: 100vh;
-  
-  @include respond-to(sm) {
-    padding: $spacing-sm;
-  }
-  
-  @include respond-to(xs) {
-    padding: $spacing-xs;
-  }
-}
+  overflow-x: hidden;
 
-// Seção de boas-vindas
-.welcome-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: $spacing-lg $spacing-md;
-  margin-bottom: $spacing-lg;
-  background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
-  color: $light-text;
-  border-radius: $border-radius;
-  box-shadow: $card-shadow;
-  
-  @include respond-to(md) {
-    padding: $spacing-md;
-    margin-bottom: $spacing-md;
-  }
-  
-  @include respond-to(xs) {
-    padding: $spacing-sm;
-    margin-bottom: $spacing-sm;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: $spacing-sm;
-    font-weight: 700;
-    
-    @include respond-to(md) {
-      font-size: 2rem;
-    }
-    
-    @include respond-to(sm) {
-      font-size: 1.8rem;
-    }
-    
-    @include respond-to(xs) {
-      font-size: 1.5rem;
-      margin-bottom: $spacing-xs;
-    }
-  }
-  
-  p {
-    font-size: 1.2rem;
-    margin-bottom: $spacing-md;
-    max-width: 600px;
-    line-height: 1.6;
-    
-    @include respond-to(md) {
-      font-size: 1.1rem;
-      margin-bottom: $spacing-sm;
-    }
-    
-    @include respond-to(sm) {
-      font-size: 1rem;
-    }
-    
-    @include respond-to(xs) {
-      font-size: 0.9rem;
-      line-height: 1.4;
-      margin-bottom: $spacing-sm;
-    }
-  }
-  
-  button {
-    padding: 12px 32px;
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    @include respond-to(sm) {
-      padding: 10px 24px;
-      font-size: 0.9rem;
-    }
-    
-    @include respond-to(xs) {
-      padding: 8px 20px;
-      font-size: 0.85rem;
-    }
-    
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-    
-    mat-icon {
-      margin-right: 8px;
-      vertical-align: middle;
-      
-      @include respond-to(xs) {
-        margin-right: 4px;
-        font-size: 18px;
-      }
-    }
-  }
-}
-
-// Seção de funcionalidades
-.features-section {
-  padding: $spacing-md 0;
-  
-  @include respond-to(sm) {
-    padding: $spacing-sm 0;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: $spacing-md;
-    position: relative;
-    
-    @include respond-to(md) {
-      font-size: 1.8rem;
-      margin-bottom: $spacing-sm;
-    }
-    
-    @include respond-to(xs) {
-      font-size: 1.5rem;
-    }
-    
-    &:after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background-color: $accent-color;
-      margin: 12px auto 0;
-      border-radius: 2px;
-      
-      @include respond-to(xs) {
-        width: 40px;
-        height: 3px;
-        margin: 8px auto 0;
-      }
-    }
-  }
-}
-
-// Grid de funcionalidades
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: $spacing-md;
-  
-  @include respond-to(lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  @include respond-to(md) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-sm;
-  }
-  
-  @include respond-to(sm) {
-    grid-template-columns: 1fr;
-  }
-  
-  .feature-card {
-    background-color: white;
-    padding: $spacing-md;
-    border-radius: $border-radius;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: $card-shadow;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    @include respond-to(md) {
-      padding: $spacing-sm;
-    }
-    
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
-    
-    .feature-icon {
-      font-size: 2.5rem;
-      height: 2.5rem;
-      width: 2.5rem;
-      color: $primary-color;
-      margin-bottom: $spacing-sm;
-      
-      @include respond-to(md) {
-        font-size: 2rem;
-        height: 2rem;
-        width: 2rem;
-      }
-      
-      @include respond-to(xs) {
-        font-size: 1.8rem;
-        height: 1.8rem;
-        width: 1.8rem;
-        margin-bottom: $spacing-xs;
-      }
-    }
-    
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: $spacing-sm;
-      color: $primary-color;
-      
-      @include respond-to(md) {
-        font-size: 1.3rem;
-      }
-      
-      @include respond-to(xs) {
-        font-size: 1.1rem;
-        margin-bottom: $spacing-xs;
-      }
-    }
-    
-    p {
-      color: lighten($text-color, 20%);
-      line-height: 1.5;
-      
-      @include respond-to(xs) {
-        font-size: 0.9rem;
-        line-height: 1.4;
-      }
-    }
-  }
-}
-
-// Adaptação para dispositivos sensíveis ao toque
-@media (hover: none) {
-  .feature-card:hover, button:hover {
-    transform: none;
-    box-shadow: $card-shadow;
-  }
-}
-
-// Orientação paisagem em dispositivos móveis
-@media (max-width: $breakpoint-sm) and (orientation: landscape) {
   .welcome-section {
-    padding: $spacing-sm;
-    
+    text-align: center;
+    margin-bottom: $spacing-xl;
+
     h1 {
-      font-size: 1.6rem;
-      margin-bottom: $spacing-xs;
+      font-size: $font-size-xxl;
+      color: $color-primary;
+      margin-bottom: $spacing-md;
+      font-weight: 700;
     }
-    
+
     p {
-      font-size: 0.9rem;
-      margin-bottom: $spacing-sm;
+      font-size: $font-size-lg;
+      color: $color-light;
+      margin-bottom: $spacing-lg;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      background-color: $color-button-bg;
+      color: $color-text-button;
+      font-size: $font-size-lg;
+      display: inline-flex;
+      align-items: center;
+      padding: $spacing-sm $spacing-md;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $color-button-hover;
+      }
+
+      mat-icon {
+        margin-right: $spacing-sm;
+      }
     }
   }
-  
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
+
+  .features-section {
+    h2 {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-lg;
+      text-align: center;
+      color: $color-primary;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: $spacing-md;
+
+      .feature-card {
+        background-color: $color-card-bg;
+        padding: $spacing-md;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid $color-border;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        mat-icon {
+          font-size: $font-size-xl;
+          color: $color-primary;
+          margin-bottom: $spacing-sm;
+        }
+
+        h3 {
+          font-size: $font-size-lg;
+          color: $color-primary;
+          margin-bottom: $spacing-sm;
+        }
+
+        p {
+          font-size: $font-size-base;
+          color: $color-text;
+          line-height: 1.6;
+        }
+      }
+    }
   }
 }
 
-// Suporte a telas muito grandes
-@media (min-width: 1600px) {
+@include respond-to(sm) {
   .home-container {
-    max-width: 1400px;
+    padding: $spacing-md;
   }
-  
-  .features-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
 
-// Impressão
-@media print {
-  .home-container {
-    background: white;
-    color: black;
-    padding: 0;
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
-  
-  .welcome-section {
-    background: white;
-    color: black;
-    box-shadow: none;
-    border: 1px solid #ddd;
-  }
-  
+
   .feature-card {
-    box-shadow: none;
-    border: 1px solid #ddd;
-    page-break-inside: avoid;
+    padding: $spacing-sm;
   }
-  
-  button {
-    display: none;
+
+  h1 {
+    font-size: $font-size-xl;
+  }
+
+  .cta-button {
+    font-size: $font-size-base;
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+@include respond-to(md) {
+  .home-container {
+    padding: $spacing-lg;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 }
