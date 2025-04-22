@@ -7,7 +7,6 @@ import { AppointmentRequest } from '../../model/AppointmentRequest';
 import { MatIconModule } from '@angular/material/icon';
 import { AppointmentFormComponent } from '../appointment-form/appointment-form.component';
 import { MatDialog } from '@angular/material/dialog';
-import { HeaderComponent } from '../header/header.component';
 import { Pageable } from '../../model/Pageable';
 import { PaginationComponent } from "../paginator/paginator.component";
 import { PageEvent } from '@angular/material/paginator';
@@ -20,36 +19,44 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./appointment.component.scss'],
 })
 export class AppointmentComponent {
-  isFormVisible: boolean = false;  // Controla a visibilidade do formulário
-  appointments: Pageable<AppointmentResponse> = { content: [], page: 0, size: 10, totalElements: 0 };
+  isFormVisible: boolean = false;
+  appointments: Pageable<AppointmentResponse> = 
+  {  
+    content: [],
+    page: 0,
+    size: 9,
+    totalElements: 0
+   };
   appointment: AppointmentRequest = new AppointmentRequest('', '');
   selectedAppointment: AppointmentResponse | null = null;
 
-  // Variáveis de paginação
   totalElements: number = 0;
   totalPages: number = 0;
   currentPage: number = 0;
-  pageSize: number = 5;
+  pageSize: number = 9;
   appointmentData: any = {};
 
   constructor(private appointmentService: AppointmentService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.loadAppointments(this.currentPage, this.pageSize); // Carregar a primeira página
+    this.loadAppointments(this.currentPage, this.pageSize);
   }
 
   onPageChange(event: PageEvent): void {
     console.log('Página mudou:', event);
-    this.loadAppointments(event.pageIndex, event.pageSize);
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.loadAppointments(this.currentPage, this.pageSize);
   }
+  
 
   loadAppointments(page: number, size: number): void {
     this.appointmentService.getAppointments({ page, size }).subscribe(
       (data) => {
         console.log('Resposta da API:', data);
-        this.appointments = data; // Atribuir os dados da resposta
+        this.appointments = data;
         this.totalElements = data.totalElements;
-        this.totalPages = Math.ceil(this.totalElements / this.pageSize); // Atualiza o número de páginas
+        this.totalPages = Math.ceil(this.totalElements / this.pageSize);
       },
       (error) => {
         console.error('Erro ao carregar compromissos:', error);
@@ -82,13 +89,13 @@ export class AppointmentComponent {
 
   openAppointmentDialog(appointment: any): void {
     const dialogRef = this.dialog.open(AppointmentFormComponent, {
-      data: appointment // Passando os dados do compromisso para o diálogo
+      data: appointment
     });
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Compromisso atualizado:', result);
-        this.loadAppointments(this.currentPage, this.pageSize); // Atualiza a lista de compromissos após o fechamento do diálogo
+        this.loadAppointments(this.currentPage, this.pageSize);
       }
     });
   } 

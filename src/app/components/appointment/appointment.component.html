@@ -4,53 +4,37 @@
 
 <div class="container">
   <h1 class="title">Todos os Compromissos</h1>
-  
-  <div class="form-container" *ngIf="isFormVisible">
-    <h2 class="form-title">Novo Compromisso</h2>
-    <!-- Adicione o conteúdo do formulário aqui, se necessário -->
+
+  <div class="card-grid">
+    <div class="appointment-card" *ngFor="let appt of appointments.content">
+      <div class="card-header">
+        <h2 class="card-title">{{ appt.description || 'Sem título' }}</h2>
+        <span [ngClass]="appt.status ? 'status-completed' : 'status-pending'">
+          {{ appt.status ? 'Completo' : 'Pendente' }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <p><strong>Início:</strong> {{ appt.startDate | date:'shortDate' }}</p>
+        <p><strong>Fim:</strong> {{ appt.endDate ? (appt.endDate | date:'shortDate') : '—' }}</p>
+      </div>
+
+      <div class="card-actions">
+        <button class="icon-btn delete-btn" (click)="deleteAppointment(appt.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button class="icon-btn update-btn" (click)="openAppointmentDialog(appt)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button class="icon-btn status-btn" (click)="markAsCompleted(appt.id)">
+          <mat-icon>check_box</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- Tabela de Compromissos -->
-  <table class="appointment-table">
-    <thead>
-      <tr>
-        <th>Descrição</th>
-        <th>Data Início</th>
-        <th>Data Fim</th>
-        <th>Status</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let appt of appointments.content">
-        <td>{{ appt.description }}</td>
-        <td>{{ appt.startDate | date }}</td>
-        <td>{{ appt.endDate | date }}</td>
-        <td>
-          <span [ngClass]="appt.status ? 'status-completed' : 'status-pending'">
-            {{ appt.status ? 'Completo' : 'Pendente' }}
-          </span>
-        </td>
-        <td>
-          <button class="delete-btn" (click)="deleteAppointment(appt.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-
-          <button class="update-btn" (click)="openAppointmentDialog(appt)">
-            <mat-icon>edit</mat-icon>
-          </button>
-
-          <button class="status-btn" (click)="markAsCompleted(appt.id)">
-            <mat-icon>check_box</mat-icon>
-          </button>  
-        </td>
-      </tr>
-    </tbody>
-  </table>  
-
   <app-paginator 
-  [totalElements]="appointments.totalElements" 
+  [totalElements]="appointments.totalElements"
   (pageChange)="onPageChange($event)">
 </app-paginator>
 </div>
-

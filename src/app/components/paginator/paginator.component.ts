@@ -9,11 +9,11 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginationComponent implements AfterViewInit {
-  pageSize = 5; // Itens por página
-  currentPage = 0; // Página atual
+  pageSize = 9;
+  currentPage = 0;
 
-  @Input() totalElements!: number;  // Adicionando o Input para totalElements
-  @Output() pageChange = new EventEmitter<PageEvent>(); // Emitir evento de mudança de página
+  @Input() totalElements!: number;
+  @Output() pageChange = new EventEmitter<PageEvent>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -27,6 +27,6 @@ export class PaginationComponent implements AfterViewInit {
 
   onPageChange(event: PageEvent) {
     console.log('Evento de Paginação Disparado:', event);
-    this.pageChange.emit(event); // Emite o evento com as novas informações de página
+    this.pageChange.emit(event);
   }
 }
