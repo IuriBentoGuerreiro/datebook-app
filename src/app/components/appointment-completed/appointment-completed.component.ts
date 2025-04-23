@@ -15,11 +15,11 @@ import { Pageable } from '../../model/Pageable';
   styleUrls: ['./appointment-completed.component.scss']
 })
 export class AppointmentCompletedComponent implements OnInit {
-  currentPage: number = 0; // Página inicial
-  pageSize: number = 5; // Tamanho da página
-  completedAppointments: AppointmentResponse[] = []; // Lista de compromissos concluídos
-  totalPages: number = 0; // Total de páginas
-  totalElements: number = 0; // Total de elementos
+  currentPage: number = 0;
+  pageSize: number = 9;
+  completedAppointments: AppointmentResponse[] = [];
+  totalPages: number = 0;
+  totalElements: number = 0;
 
   constructor(private appointmentService: AppointmentService) {}
 
@@ -27,7 +27,6 @@ export class AppointmentCompletedComponent implements OnInit {
     this.loadAppointmentsCompleted();
   }
 
-  // Disparado quando o usuário muda a página no paginator
   onPageChange(event: PageEvent): void {
     console.log('Página mudou:', event);
     this.currentPage = event.pageIndex;
@@ -35,7 +34,6 @@ export class AppointmentCompletedComponent implements OnInit {
     this.loadAppointmentsCompleted();
   }
 
-  // Carrega os compromissos concluídos
   loadAppointmentsCompleted(): void {
     this.appointmentService.listCompleted(this.currentPage, this.pageSize)
       .subscribe(response => {

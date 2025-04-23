@@ -1,5 +1,6 @@
 $primary-color: #6200ea;
 $primary-hover: #3700b3;
+$background-color: #f7f7f7;
 $danger-hover-bg: rgba(229, 57, 53, 0.15);
 $warning-color: #fb8c00;
 $warning-hover-bg: rgba(251, 140, 0, 0.15);
@@ -15,12 +16,12 @@ $radius: 12px;
 $completed-color: #2e7d32;
 $pending-color: #c62828;
 
-:host {
+host {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: $bg-color;
+  background-color: $background-color;
 }
 
 .container {
@@ -66,41 +67,48 @@ $pending-color: #c62828;
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 4rem;
+  gap: 2rem;
   width: 100%;
+  margin-top: 2rem;
 }
 
 .appointment-card {
-  background-color: $card-bg;
-  border-radius: $radius;
-  box-shadow: $shadow;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 250px;
-  height: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: $hover-shadow;
-  }
+.appointment-card:hover {
+  transform: translateY(-4px);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .card-title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: $text-color;
-  margin-right: 1rem;
-  flex: 1;
+  color: #333;
+}
+
+.card-body p {
+  margin: 0.3rem 0;
+  color: #666;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
 }
 
 .status-completed {
@@ -170,30 +178,11 @@ $pending-color: #c62828;
   }
 }
 
-@media (max-width: 600px) {
-  .title {
-    font-size: 1.5rem;
-  }
+@media (max-width: 768px) {
+  .container { padding: 1rem; }
+  .title { font-size: 1.5rem; }
+}
 
-  .card-title {
-    font-size: 1rem;
-  }
-
-  .card-body {
-    font-size: 0.85rem;
-  }
-
-  .icon-btn {
-    font-size: 1.1rem;
-  }
-
-  .add-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.4rem;
-  }
-
-  .appointment-card {
-    padding: 1rem;
-  }
+@media (max-width: 480px) {
+  .title { font-size: 1.3rem; }
 }

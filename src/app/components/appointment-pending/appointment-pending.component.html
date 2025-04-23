@@ -1,32 +1,30 @@
 <div class="container">
   <h1 class="title">Compromissos Pendentes</h1>
-  <table class="appointment-table">
-    <thead>
-      <tr>
-        <th>Descrição</th>
-        <th>Data Início</th>
-        <th>Data Fim</th>
-        <th>Status</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let appt of pendingAppointments">
-        <td>{{ appt.description }}</td>
-        <td>{{ appt.startDate | date }}</td>
-        <td>{{ appt.endDate | date }}</td>
-        <td>
-          <span [ngClass]="appt.status ? 'status-completed' : 'status-pending'">
-            {{ appt.status ? 'Completo' : 'Pendente' }}
-          </span>
-        </td>
-        <td>
-          <button class="status-btn" (click)="markAsCompleted(appt.id)">
-            <mat-icon>check_box</mat-icon>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <app-paginator [totalElements]="totalElements" (pageChange)="onPageChange($event)"></app-paginator>
+
+  <div class="card-grid">
+    <div class="appointment-card" *ngFor="let appt of pendingAppointments">
+      <div class="card-header">
+        <h2 class="card-title">{{ appt.description || 'Sem título' }}</h2>
+        <span [ngClass]="appt.status ? 'status-completed' : 'status-pending'">
+          {{ appt.status ? 'Completo' : 'Pendente' }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <p><strong>Início:</strong> {{ appt.startDate | date:'shortDate' }}</p>
+        <p><strong>Fim:</strong> {{ appt.endDate ? (appt.endDate | date:'shortDate') : '—' }}</p>
+      </div>
+
+      <div class="card-footer">
+        <button class="status-btn" (click)="markAsCompleted(appt.id)">
+          <mat-icon>check_box</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <app-paginator 
+    [totalElements]="totalElements" 
+    (pageChange)="onPageChange($event)">
+  </app-paginator>
 </div>
