@@ -10,15 +10,15 @@ $font-size-xl: 24px;
 $font-size-xxl: 32px;
 $color-primary: #6a0dad;
 $color-text-button: #e2e2e2;
-$color-secondary: #000000;
-$color-text: #3a3a3a;
-$color-light: #383838;
-$color-card-bg: #f5f5f5;
+$color-secondary: #f9f9f9;
+$color-text: #333333;
+$color-light: #888888;
+$color-card-bg: #ffffff;
 $color-border: #e0e0e0;
-$color-hover: rgba(0, 0, 0, 0.1);
 $color-button-bg: #6a0dad;
 $color-button-hover: #5e0b94;
 
+// Mixin de mídia
 @mixin respond-to($breakpoint) {
   @if $breakpoint == sm {
     @media (max-width: 600px) { @content; }
@@ -31,6 +31,7 @@ $color-button-hover: #5e0b94;
   }
 }
 
+// Resetando box-sizing
 *,
 *::before,
 *::after {
@@ -40,7 +41,6 @@ $color-button-hover: #5e0b94;
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   font-family: 'Roboto', Arial, sans-serif;
   background-color: $color-secondary;
   color: $color-text;
@@ -57,12 +57,13 @@ html, body {
   .welcome-section {
     text-align: center;
     margin-bottom: $spacing-xl;
-
+    
     h1 {
       font-size: $font-size-xxl;
       color: $color-primary;
       margin-bottom: $spacing-md;
       font-weight: 700;
+      text-transform: uppercase;
     }
 
     p {
@@ -76,10 +77,9 @@ html, body {
       background-color: $color-button-bg;
       color: $color-text-button;
       font-size: $font-size-lg;
-      display: inline-flex;
-      align-items: center;
       padding: $spacing-sm $spacing-md;
-      border-radius: 8px;
+      border-radius: 4px;
+      border: none;
       transition: background-color 0.3s ease;
 
       &:hover {
@@ -98,25 +98,26 @@ html, body {
       margin-bottom: $spacing-lg;
       text-align: center;
       color: $color-primary;
+      font-weight: 600;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: $spacing-md;
 
       .feature-card {
         background-color: $color-card-bg;
         padding: $spacing-md;
-        border-radius: 12px;
+        border-radius: 8px;
         text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         border: 1px solid $color-border;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
 
         &:hover {
           transform: translateY(-4px);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         mat-icon {
@@ -129,6 +130,7 @@ html, body {
           font-size: $font-size-lg;
           color: $color-primary;
           margin-bottom: $spacing-sm;
+          font-weight: 500;
         }
 
         p {
@@ -141,6 +143,7 @@ html, body {
   }
 }
 
+// Responsividade
 @include respond-to(sm) {
   .home-container {
     padding: $spacing-md;
@@ -148,10 +151,6 @@ html, body {
 
   .features-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
-  .feature-card {
-    padding: $spacing-sm;
   }
 
   h1 {

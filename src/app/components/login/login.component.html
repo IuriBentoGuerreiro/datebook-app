@@ -1,36 +1,47 @@
-<div class="left-panel">
-  <img src="assets/illustration.avif" alt="Login Illustration" />
+<a routerLink="/home" class="back-link" aria-label="Voltar para a página inicial">
+  <mat-icon aria-hidden="true">arrow_back</mat-icon>
+  Voltar
+</a>
+
+<div class="left-panel" aria-hidden="true">
+  <img src="assets/illustration.avif" alt="Ilustração de acesso ao sistema" />
 </div>
 
 <div class="right-panel">
   <div class="form-wrapper">
     <h2>Acesso à Plataforma</h2>
 
-    <div class="form-group">
-      <label for="username">Usuário</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        [(ngModel)]="username"
-        placeholder="Seu nome de usuário"
-      />
-    </div>
+    <form (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="username">Usuário</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          placeholder="Seu nome de usuário"
+          required
+          autocomplete="username"
+        />
+      </div>
 
-    <div class="form-group">
-      <label for="password">Senha</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="password"
-        placeholder="Sua senha"
-      />
-    </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Sua senha"
+          required
+          autocomplete="current-password"
+        />
+      </div>
 
-    <button (click)="onLogin()">Entrar</button>
+      <button type="submit">Entrar</button>
+    </form>
 
-    <div class="auth-links" style="text-align: center; margin-top: 1.5rem;">
+    <div class="auth-links">
       <a class="forget-password" href="#">Esqueci minha senha</a>
       <br />
       <a class="register" href="#">Cadastrar-se</a>
