@@ -105,6 +105,10 @@ $status-pending: red;
   font-weight: bold;
 }
 
+app-paginator{
+  padding: 10px;
+}
+
 @media (max-width: 768px) {
   .container { padding: 1rem; }
   .title { font-size: 1.5rem; }
