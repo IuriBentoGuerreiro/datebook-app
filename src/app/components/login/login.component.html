@@ -11,7 +11,7 @@
   <div class="form-wrapper">
     <h2>Acesso à Plataforma</h2>
 
-    <form (ngSubmit)="onLogin()">
+    <form #loginForm="ngForm" (ngSubmit)="onLogin()">
       <div class="form-group">
         <label for="username">Usuário</label>
         <input
@@ -22,6 +22,7 @@
           placeholder="Seu nome de usuário"
           required
           autocomplete="username"
+          #usernameInput="ngModel"
         />
       </div>
 
@@ -35,10 +36,11 @@
           placeholder="Sua senha"
           required
           autocomplete="current-password"
+          #passwordInput="ngModel"
         />
       </div>
 
-      <button type="submit">Entrar</button>
+      <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
     </form>
 
     <div class="auth-links">
