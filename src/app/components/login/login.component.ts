@@ -4,11 +4,12 @@ import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, MatIconModule, RouterModule],
+  imports: [FormsModule, MatIconModule, RouterModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

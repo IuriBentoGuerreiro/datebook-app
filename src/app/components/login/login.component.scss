@@ -171,6 +171,13 @@ $box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   }
 }
 
+.error {
+  color: #d32f2f;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   :host {
     flex-direction: column;

@@ -38,10 +38,15 @@
           autocomplete="current-password"
           #passwordInput="ngModel"
         />
+    
       </div>
 
       <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
     </form>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
 
     <div class="auth-links">
       <a class="forget-password" href="#">Esqueci minha senha</a>
