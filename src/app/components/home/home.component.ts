@@ -4,13 +4,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { HeaderHomeComponent } from '../header-home/header-home.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    HeaderComponent, 
+    HeaderHomeComponent, 
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

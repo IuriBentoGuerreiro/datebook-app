@@ -23,7 +23,7 @@ export class AppComponent {
         filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
       )
       .subscribe((event) => {
-        this.showHeader = !['/login', '/register'].some(path =>
+        this.showHeader = !['/login', '/register', '/home'].some(path =>
           event.urlAfterRedirects.includes(path)
         );
       });
