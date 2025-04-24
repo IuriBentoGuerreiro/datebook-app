@@ -53,10 +53,10 @@ $box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 .back-link {
   position: absolute;
   top: 2rem;
-  left: 5rem;
+  left: 1rem;
   display: flex;
   align-items: center;
-  color: $text-color;
+  color: $accent-color;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -137,13 +137,13 @@ $box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 
   button {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.50rem;
     background-color: $primary-color;
     border: none;
     color: white;
     font-size: 1rem;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 17px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
